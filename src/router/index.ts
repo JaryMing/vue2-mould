@@ -2,7 +2,7 @@
  * @Author: wpp
  * @Date: 2021-01-18 16:09:02
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-18 19:58:14
+ * @LastEditTime: 2021-01-18 20:49:38
  * @FilePath: \text\src\router\index.ts
  */
 import Vue from "vue";
@@ -16,7 +16,6 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "Layout",
     component: Layout,
     children: [HomeRouter, AboutRouter]
   }

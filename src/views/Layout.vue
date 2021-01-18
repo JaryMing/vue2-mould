@@ -2,7 +2,7 @@
  * @Author: wpp
  * @Date: 2021-01-18 19:18:23
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-18 19:47:32
+ * @LastEditTime: 2021-01-18 20:28:21
  * @FilePath: \text\src\views\layout.vue
 -->
 <template>
@@ -21,7 +21,11 @@
 import { Vue, Component } from "vue-property-decorator";
 
 @Component
-export default class Layout extends Vue {}
+export default class Layout extends Vue {
+  mounted() {
+    document.documentElement.style.fontSize = "16px";
+  }
+}
 </script>
 
 <style lang="less" scoped>
