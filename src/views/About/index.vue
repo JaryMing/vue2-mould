@@ -2,7 +2,7 @@
  * @Author: wpp
  * @Date: 2021-01-18 16:09:02
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-18 21:04:38
+ * @LastEditTime: 2021-01-23 16:17:09
  * @FilePath: \text\src\views\About\index.vue
 -->
 <template>
@@ -19,12 +19,20 @@ import { Getter, Mutation } from "vuex-class";
 
 @Component
 export default class Layout extends Vue {
-  @Getter getTestVal?: any;
+  @Getter getTestVal?: number | string;
 
-  @Mutation SETTESTVAL?: any;
+  @Mutation SETTESTVAL!: Function;
+
+  get testVal() {
+    return this.getTestVal;
+  }
 
   public setTestValFn() {
-    this.SETTESTVAL(10);
+    if (this.testVal === 1) {
+      this.SETTESTVAL(10);
+    } else {
+      this.SETTESTVAL(1);
+    }
   }
 }
 </script>
@@ -33,6 +41,7 @@ export default class Layout extends Vue {
 .about {
   .text {
     font-size: 32px;
+    text-align: center;
   }
 }
 </style>

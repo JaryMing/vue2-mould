@@ -2,7 +2,7 @@
  * @Author: wpp
  * @Date: 2021-01-18 16:09:02
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-18 19:46:27
+ * @LastEditTime: 2021-01-23 16:01:51
  * @FilePath: \text\src\App.vue
 -->
 <template>
@@ -16,8 +16,6 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  height: 100vh;
+  height: 100%;
 }
 </style>

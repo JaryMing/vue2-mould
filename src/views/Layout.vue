@@ -2,7 +2,7 @@
  * @Author: wpp
  * @Date: 2021-01-18 19:18:23
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-18 20:28:21
+ * @LastEditTime: 2021-01-19 21:17:25
  * @FilePath: \text\src\views\layout.vue
 -->
 <template>
@@ -35,6 +35,7 @@ export default class Layout extends Vue {
   flex-direction: column;
   #nav {
     padding: 30px;
+    text-align: center;
 
     a {
       font-weight: bold;
