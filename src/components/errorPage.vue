@@ -2,7 +2,7 @@
  * @Author: wpp
  * @Date: 2021-01-18 16:09:02
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-23 17:09:29
+ * @LastEditTime: 2021-01-23 17:17:23
  * @FilePath: \text\src\components\errorPage.vue
 -->
 <template>
@@ -17,6 +17,7 @@
         <div class="in">
           <div class="textThis">
             <i class="text-404"> 出错啦 404 ！</i>
+            <i class="text-404 button-style" @click="handleBackFn">返 回</i>
           </div>
         </div>
       </div>
@@ -28,7 +29,11 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class ErrorPage extends Vue {}
+export default class ErrorPage extends Vue {
+  public handleBackFn() {
+    this.$router.back();
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -86,15 +91,6 @@ export default class ErrorPage extends Vue {}
     -o-animation: flying 3s infinite;
     animation: flying 3s infinite;
   }
-  .disk {
-    left: 234px;
-    top: 98px;
-    z-index: 9;
-    -webkit-animation: flying 2s infinite;
-    -moz-animation: flying 2s infinite;
-    -o-animation: flying 2s infinite;
-    animation: flying 2s infinite;
-  }
   .light {
     left: 330px;
     top: 188px;
@@ -126,10 +122,18 @@ export default class ErrorPage extends Vue {}
     left: 55%;
     transform: translate(-50%, -50%);
     .in {
-      .text-404 {
-        line-height: 50px;
+      .textThis {
+        display: flex;
+        flex-direction: column;
         font-size: 30px;
-        color: #e94c3c;
+        .text-404 {
+          line-height: 50px;
+          color: #e94c3c;
+        }
+        .button-style {
+          font-size: 20px;
+          cursor: pointer;
+        }
       }
     }
   }
