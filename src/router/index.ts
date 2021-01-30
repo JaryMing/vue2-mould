@@ -2,7 +2,7 @@
  * @Author: wpp
  * @Date: 2021-01-18 16:09:02
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-23 16:59:30
+ * @LastEditTime: 2021-01-30 20:07:53
  * @FilePath: \text\src\router\index.ts
  */
 import Vue from "vue";
@@ -14,11 +14,13 @@ import HomeRouter from "./home";
 
 Vue.use(VueRouter);
 
+const routeDate = [HomeRouter, AboutRouter];
+
 const routes: Array<RouteConfig> = [
   {
     path: "/",
     component: Layout,
-    children: [HomeRouter, AboutRouter]
+    children: routeDate
   },
   {
     path: "/*",
@@ -28,8 +30,8 @@ const routes: Array<RouteConfig> = [
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: "/test",
   routes
 });
 
-export default router;
+export { router, routeDate };
