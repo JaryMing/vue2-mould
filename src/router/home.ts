@@ -2,7 +2,7 @@
  * @Author: wpp
  * @Date: 2021-01-18 16:09:02
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-31 22:04:04
+ * @LastEditTime: 2021-01-31 22:22:58
  * @FilePath: \text\src\router\home.ts
  */
 import { RouteConfig } from "vue-router";

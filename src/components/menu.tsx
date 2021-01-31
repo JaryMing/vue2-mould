@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-01-30 20:08:59
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-31 21:58:39
+ * @LastEditTime: 2021-01-31 22:22:33
  * @FilePath: \text\src\components\menu.tsx
  */
 import { Component, Vue, Prop } from "vue-property-decorator";
@@ -28,11 +28,14 @@ export default class Menu extends Vue {
     // 设置默认选中项
     this.defaultSelectedKeys = [pathName];
     // 设置默认打开项
-    // /homeChild/homeChildChild
     const pathArr = pathName.split("/");
-    pathArr.forEach((item: string) => {
-      this.defaultOpenKeys.push(`/${item}`);
-    });
+
+    if (pathArr.length > 2) {
+      // 防止只有一级菜单时 会将 key = "/" 的层级打开 (临时这么解决)
+      pathArr.forEach((item: string) => {
+        this.defaultOpenKeys.push(`/${item}`);
+      });
+    }
   }
 
   private handleMenuItemFn(obj: {
