@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-01-30 20:08:59
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-30 21:35:00
+ * @LastEditTime: 2021-01-31 21:58:39
  * @FilePath: \text\src\components\menu.tsx
  */
 import { Component, Vue, Prop } from "vue-property-decorator";
@@ -11,30 +11,48 @@ import { RouteConfig } from "vue-router";
 export default class Menu extends Vue {
   @Prop({
     default: () => {
-      return [
-        {
-          path: "/",
-          name: "home",
-          children: [
-            {
-              path: "/homeChild",
-              name: "homeChild",
-              children: [{ path: "/homeChildChild", name: "homeChildChild" }]
-            }
-          ]
-        },
-        { path: "/about", name: "about" }
-      ];
+      return [];
     }
   })
   private baseData!: Array<RouteConfig>;
+
+  // http://192.168.0.104:8080/test/homeChild/homeChildChild
+  private defaultOpenKeys: Array<string> = [];
+
+  private defaultSelectedKeys: Array<string> = [];
+
+  private created() {
+    const publicPath = process.env.VUE_APP_PUBLICPATH;
+    let pathName = window.location.pathname;
+    pathName = window.location.pathname.replace(publicPath, "");
+    // 设置默认选中项
+    this.defaultSelectedKeys = [pathName];
+    // 设置默认打开项
+    // /homeChild/homeChildChild
+    const pathArr = pathName.split("/");
+    pathArr.forEach((item: string) => {
+      this.defaultOpenKeys.push(`/${item}`);
+    });
+  }
+
+  private handleMenuItemFn(obj: {
+    item: string;
+    key: string;
+    keyPath: string;
+  }) {
+    console.log(obj);
+    this.$router.push(obj.key);
+  }
+
   render() {
     const setMenuItem = function(obj: RouteConfig) {
-      return <a-menu-item key={obj.path}>{obj?.name}</a-menu-item>;
+      return (
+        <a-menu-item key={obj?.meta.pathKey}>{obj?.meta.text}</a-menu-item>
+      );
     };
     const setSubMenu = function(obj: RouteConfig) {
       return (
-        <a-sub-menu key={obj.path} title={obj?.name}>
+        <a-sub-menu key={obj?.meta.pathKey} title={obj?.meta.text}>
           {obj.children && obj.children[0]
             ? obj.children.map((childObj: RouteConfig) => {
                 return childObj.children && childObj.children[0]
@@ -46,23 +64,19 @@ export default class Menu extends Vue {
       );
     };
     return (
-      <a-menu default-selected-keys={["5"]} mode="inline">
+      <a-menu
+        default-selected-keys={this.defaultSelectedKeys}
+        defaultOpenKeys={this.defaultOpenKeys}
+        mode="inline"
+        theme="dark"
+        onClick={this.handleMenuItemFn}
+      >
         {this.baseData.map((obj: RouteConfig) => {
           return obj.children && obj.children[0]
             ? setSubMenu(obj)
             : setMenuItem(obj);
         })}
       </a-menu>
-      // <a-menu default-selected-keys={["5"]} mode="inline">
-      //   <a-sub-menu key="sub2" title="Navigation Two">
-      //     <a-menu-item key="5">Option 5</a-menu-item>
-      //     <a-menu-item key="6">Option 6</a-menu-item>
-      //     <a-sub-menu key="sub3" title="Submenu">
-      //       <a-menu-item key="7">Option 7</a-menu-item>
-      //       <a-menu-item key="8">Option 8</a-menu-item>
-      //     </a-sub-menu>
-      //   </a-sub-menu>
-      // </a-menu>
     );
   }
 }

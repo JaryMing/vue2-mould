@@ -2,14 +2,14 @@
  * @Author: wpp
  * @Date: 2021-01-18 16:10:47
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-18 20:46:49
+ * @LastEditTime: 2021-01-31 21:39:36
  * @FilePath: \text\vue.config.js
  */
 
 const ip = "http://192.168.5.133"; // 8009
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
+  publicPath: process.env.VUE_APP_PUBLICPATH,
   runtimeCompiler: true,
   devServer: {
     proxy: {

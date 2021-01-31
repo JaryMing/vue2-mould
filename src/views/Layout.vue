@@ -2,18 +2,17 @@
  * @Author: wpp
  * @Date: 2021-01-18 19:18:23
  * @LastEditors: wpp
- * @LastEditTime: 2021-01-30 21:10:19
+ * @LastEditTime: 2021-01-31 22:01:00
  * @FilePath: \text\src\views\Layout.vue
 -->
 <template>
   <a-layout class="layout">
-    <a-layout-header id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <a-layout-header>
+      <h1 class="header-box">logo</h1>
     </a-layout-header>
     <a-layout class="main">
       <a-layout-sider>
-        <Menu></Menu>
+        <Menu :baseData="getRouterDate"></Menu>
       </a-layout-sider>
       <a-layout>
         <router-view />
@@ -48,16 +47,9 @@ export default class Layout extends Vue {
   height: 100%;
   display: flex;
   flex-direction: column;
-  #nav {
+  .header-box {
     text-align: center;
     color: #fff;
-    a {
-      font-weight: bold;
-      color: #fff;
-      &.router-link-exact-active {
-        color: #42b983;
-      }
-    }
   }
   .main {
     flex: 1;
